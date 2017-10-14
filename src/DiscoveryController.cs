@@ -21,7 +21,7 @@ static class DiscoveryController
 	/// </remarks>
 	public static void HandleDiscoveryInput()
 	{
-		if (SwinGame.KeyTyped (KeyCode.vk_F4)) {
+		if (SwinGame.KeyTyped (KeyCode.vk_F4)){
 			SwinGame.ToggleFullScreen ();
 		}
 		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {

@@ -1,4 +1,3 @@
-
 using Microsoft.VisualBasic;
 using System;
 using System.Collections;
@@ -11,10 +10,12 @@ public static class GameResources
 
 	private static void LoadFonts ()
 	{
-		NewFont ("ArialLarge", "arial.ttf", 80);
-		NewFont ("Courier", "cour.ttf", 14);
+		//NewFont ("ArialLarge", "arial.ttf", 80);
+		NewFont ("Courier", "ffaccess.ttf", 11);
 		NewFont ("CourierSmall", "cour.ttf", 8);
-		NewFont ("Menu", "ffaccess.ttf", 8);
+		NewFont ("Menu", "Games.ttf", 16);
+        NewFont ("Winner", "Pasajero.otf", 70);
+        NewFont ("Loser", "DoubleFeature21.ttf", 70);
 	}
 
 	private static void LoadImages()
@@ -301,6 +302,10 @@ public static class GameResources
 		FreeSounds();
 		SwinGame.ProcessEvents();
 	}
+}
+
+class arial
+{
 }
 
 //=======================================================

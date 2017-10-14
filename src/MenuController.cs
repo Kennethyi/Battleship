@@ -42,8 +42,8 @@ static class MenuController
 	};
 	private const int MENU_TOP = 575;
 	private const int MENU_LEFT = 30;
-	private const int MENU_GAP = 10;//0
-	private const int BUTTON_WIDTH = 75;
+	private const int MENU_GAP = 20;//0
+	private const int BUTTON_WIDTH = 95;//75
 	private const int BUTTON_HEIGHT = 15;
 	private const int BUTTON_SEP = BUTTON_WIDTH + MENU_GAP;
 
@@ -196,7 +196,7 @@ static class MenuController
 	/// </remarks>
 	private static void DrawButtons(int menu, int level, int xOffset)
 	{
-		SwinGame.DrawText ("Press F4 to switch to Full Screen", MENU_COLOR, GameResources.GameFont ("Menu"), 490, 20);
+		SwinGame.DrawText ("Press F4 to switch to Full Screen", MENU_COLOR, GameResources.GameFont ("Menu"), 480, 20);
 		int btnTop = 0;
 
 		btnTop = MENU_TOP - (MENU_GAP + BUTTON_HEIGHT) * level;

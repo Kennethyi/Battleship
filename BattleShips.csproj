@@ -274,10 +274,12 @@
     <None Include="Resources\fonts\Games.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\fonts\Hodor.ttf">
+    <None Include="Resources\fonts\DoubleFeature21.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\fonts\pieces nfi.ttf" />
+    <None Include="Resources\fonts\Pasajero.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Target Name="CopyFiles">
     <Copy SourceFiles="@(MacLibraryFiles)" DestinationFolder="$(OutDir)" />
