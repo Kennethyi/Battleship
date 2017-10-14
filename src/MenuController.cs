@@ -42,7 +42,7 @@ static class MenuController
 	};
 	private const int MENU_TOP = 575;
 	private const int MENU_LEFT = 30;
-	private const int MENU_GAP = 0;
+	private const int MENU_GAP = 10;//0
 	private const int BUTTON_WIDTH = 75;
 	private const int BUTTON_HEIGHT = 15;
 	private const int BUTTON_SEP = BUTTON_WIDTH + MENU_GAP;
@@ -110,6 +110,9 @@ static class MenuController
 	/// <returns>false if a clicked missed the buttons. This can be used to check prior menus.</returns>
 	private static bool HandleMenuInput(int menu, int level, int xOffset)
 	{
+		if (SwinGame.KeyTyped (KeyCode.vk_F4)) {
+			SwinGame.ToggleFullScreen ();   }
+
 		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
 			GameController.EndCurrentState();
 			return true;
@@ -193,6 +196,7 @@ static class MenuController
 	/// </remarks>
 	private static void DrawButtons(int menu, int level, int xOffset)
 	{
+		SwinGame.DrawText ("Press F4 to switch to Full Screen", MENU_COLOR, GameResources.GameFont ("Menu"), 490, 20);
 		int btnTop = 0;
 
 		btnTop = MENU_TOP - (MENU_GAP + BUTTON_HEIGHT) * level;

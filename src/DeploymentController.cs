@@ -46,6 +46,10 @@ static class DeploymentController
 	/// </remarks>
 	public static void HandleDeploymentInput()
 	{
+		if (SwinGame.KeyTyped (KeyCode.vk_F4)) {
+			SwinGame.ToggleFullScreen ();
+		}
+
 		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
 			GameController.AddNewState(GameState.ViewingGameMenu);
 		}
