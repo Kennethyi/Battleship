@@ -6,7 +6,7 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="Battleship Status">
     <Files>
-      <File FileName="src\GameResources.cs" Line="12" Column="3" />
+      <File FileName="src\GameResources.cs" Line="17" Column="54" />
       <File FileName="src\EndingGameController.cs" Line="30" Column="141" />
       <File FileName="src\MenuController.cs" Line="200" Column="31" />
       <File FileName="src\GameController.cs" Line="201" Column="15" />

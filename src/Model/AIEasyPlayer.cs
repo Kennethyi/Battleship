@@ -10,7 +10,7 @@ using System.Diagnostics;
 /// The AIMediumPlayer is a type of AIPlayer where it will try and destroy a ship
 /// if it has found a ship
 /// </summary>
-public class AIMediumPlayer : AIPlayer
+public class AIEasyPlayer : AIPlayer
 {
 	/// <summary>
 	/// Private enumarator for AI states. currently there are two states,
@@ -20,13 +20,12 @@ public class AIMediumPlayer : AIPlayer
 	private enum AIStates
 	{
 		Searching,
-		TargetingShip
 	}
 
 	private AIStates _CurrentState = AIStates.Searching;
 
 	private Stack<Location> _Targets = new Stack<Location>();
-	public AIMediumPlayer(BattleShipsGame controller) : base(controller)
+	public AIEasyPlayer(BattleShipsGame controller) : base(controller)
 	{
 	}
 
@@ -45,9 +44,6 @@ public class AIMediumPlayer : AIPlayer
 			switch (_CurrentState) {
 				case AIStates.Searching:
 					SearchCoords(ref row, ref column);
-					break;
-				case AIStates.TargetingShip:
-					TargetCoords(ref row, ref column);
 					break;
 				default:
 					throw new ApplicationException("AI has gone in an imvalid state");
@@ -95,11 +91,7 @@ public class AIMediumPlayer : AIPlayer
 	protected override void ProcessShot(int row, int col, AttackResult result)
 	{
 		if (result.Value == ResultOfAttack.Hit) {
-			_CurrentState = AIStates.TargetingShip;
-			AddTarget(row - 2, col);
-			AddTarget(row, col - 2);
-			AddTarget(row + 2, col);
-			AddTarget(row, col + 2);
+			_CurrentState = AIStates.Searching;
 		} else if (result.Value == ResultOfAttack.ShotAlready) {
 			throw new ApplicationException("Error in AI");
 		}
