@@ -21,7 +21,7 @@ static class DiscoveryController
 	/// </remarks>
 	public static void HandleDiscoveryInput()
 	{
-		if (SwinGame.KeyTyped (KeyCode.vk_F4)){
+		if (SwinGame.KeyTyped (KeyCode.vk_F5)){
 			SwinGame.ToggleFullScreen ();
 		}
 		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
@@ -77,7 +77,7 @@ static class DiscoveryController
 		SwinGame.DrawText(GameController.HumanPlayer.Shots.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SHOTS_TOP);
 		SwinGame.DrawText(GameController.HumanPlayer.Hits.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, HITS_TOP);
 		SwinGame.DrawText(GameController.HumanPlayer.Missed.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SPLASH_TOP);
-		SwinGame.DrawText ("Press F4 to switch to Full Screen", SwinGame.RGBAColor(2, 167, 252, 255), GameResources.GameFont ("Menu"), 150, 70);
+		SwinGame.DrawText ("Press F5 to switch to Full Screen", SwinGame.RGBAColor(2, 167, 252, 255), GameResources.GameFont ("Menu"), 150, 70);
 	}
 
 }
