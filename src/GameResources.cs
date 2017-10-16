@@ -10,12 +10,12 @@ public static class GameResources
 
 	private static void LoadFonts ()
 	{
-		//NewFont ("ArialLarge", "arial.ttf", 80);
 		NewFont ("Courier", "ffaccess.ttf", 11);
 		NewFont ("CourierSmall", "cour.ttf", 8);
 		NewFont ("Menu", "Games.ttf", 16);
         NewFont ("Winner", "Pasajero.otf", 70);
         NewFont ("Loser", "DoubleFeature21.ttf", 70);
+        NewFont ("Score", "ffaccess.ttf", 20);
 	}
 
 	private static void LoadImages()
