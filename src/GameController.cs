@@ -283,6 +283,9 @@ public static class GameController
 			case GameState.AlteringSettings:
 				MenuController.HandleSetupMenuInput();
 				break;
+			case GameState.BGMSettings:
+				MenuController.HandleBgmMenuInput ();
+				break;
 			case GameState.Deploying:
 				DeploymentController.HandleDeploymentInput();
 				break;
@@ -319,6 +322,9 @@ public static class GameController
 				break;
 			case GameState.AlteringSettings:
 				MenuController.DrawSettings();
+				break;
+			case GameState.BGMSettings:
+				MenuController.DrawBGM ();
 				break;
 			case GameState.Deploying:
 				DeploymentController.DrawDeployment();
@@ -375,6 +381,9 @@ public static class GameController
 	public static void SetDifficulty(AIOption setting)
 	{
 		_aiSetting = setting;
+	}
+
+	public static void SetBGM (){
 	}
 
 }

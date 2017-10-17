@@ -33,6 +33,9 @@ public enum GameState
 	/// </summary>
 	AlteringSettings,
 
+	///Alter the BGM
+	BGMSettings,
+
 	/// <summary>
 	/// Players are deploying their ships
 	/// </summary>

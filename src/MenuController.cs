@@ -25,6 +25,7 @@ static class MenuController
 		new string[] {
 			"PLAY",
 			"SETUP",
+			"BGM",
 			"SCORES",
 			"QUIT"
 		},
@@ -38,8 +39,13 @@ static class MenuController
 			"EASY",
 			"MEDIUM",
 			"HARD"
-		}
+		},
 
+		new string[] {
+			"BGM1",
+			"BGM2",
+			"BGM3"
+		}
 	};
 	private const int MENU_TOP = 575;
 	private const int MENU_LEFT = 30;
@@ -49,25 +55,32 @@ static class MenuController
 	private const int BUTTON_SEP = BUTTON_WIDTH + MENU_GAP;
 
 	private const int TEXT_OFFSET = 0;
+
 	private const int MAIN_MENU = 0;
 	private const int GAME_MENU = 1;
-
 	private const int SETUP_MENU = 2;
+	private const int BGM_MENU = 3;
+
 	private const int MAIN_MENU_PLAY_BUTTON = 0;
 	private const int MAIN_MENU_SETUP_BUTTON = 1;
-	private const int MAIN_MENU_TOP_SCORES_BUTTON = 2;
+	private const int MAIN_MENU_BGM_BUTTON = 2;
+	private const int MAIN_MENU_TOP_SCORES_BUTTON = 3;
+	private const int MAIN_MENU_QUIT_BUTTON = 4;
 
-	private const int MAIN_MENU_QUIT_BUTTON = 3;
 	private const int SETUP_MENU_EASY_BUTTON = 0;
 	private const int SETUP_MENU_MEDIUM_BUTTON = 1;
 	private const int SETUP_MENU_HARD_BUTTON = 2;
-
 	private const int SETUP_MENU_EXIT_BUTTON = 3;
+
 	private const int GAME_MENU_RETURN_BUTTON = 0;
 	private const int GAME_MENU_SURRENDER_BUTTON = 1;
 	private const int GAME_MENU_RESTART_BUTTON = 2;
-
 	private const int GAME_MENU_QUIT_BUTTON = 3;
+
+	private const int BGM_MENU_BGM1_BUTTON = 0;
+	private const int BGM_MENU_BGM2_BUTTON = 1;
+	private const int BGM_MENU_BGM3_BUTTON = 2;
+
 	private static readonly Color MENU_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
 
 	private static readonly Color HIGHLIGHT_COLOR = SwinGame.RGBAColor(1, 57, 86, 255);
@@ -104,6 +117,19 @@ static class MenuController
 	}
 
 	/// <summary>
+	/// Handles the bgm menu input.
+	/// </summary>
+	public static void HandleBgmMenuInput ()
+	{
+		bool handled = false;
+		handled = HandleMenuInput (BGM_MENU, 1, 2);
+
+		if (!handled) {
+			HandleMenuInput (MAIN_MENU, 0, 0);
+		}
+	}
+
+	/// <summary>
 	/// Handles input for the specified menu.
 	/// </summary>
 	/// <param name="menu">the identifier of the menu being processed</param>
@@ -113,7 +139,8 @@ static class MenuController
 	private static bool HandleMenuInput(int menu, int level, int xOffset)
 	{
 		if (SwinGame.KeyTyped (KeyCode.vk_F5)) {
-			SwinGame.ToggleFullScreen ();   }
+			SwinGame.ToggleFullScreen ();
+   }
 
 		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
 			GameController.EndCurrentState();
@@ -174,6 +201,15 @@ static class MenuController
 
 		DrawButtons(MAIN_MENU);
 		DrawButtons(SETUP_MENU, 1, 1);
+	}
+
+	/// <summary>
+	/// Draws the bgm.
+	/// </summary>
+	public static void DrawBGM ()
+	{
+		DrawButtons (MAIN_MENU);
+		DrawButtons (BGM_MENU, 1, 2);
 	}
 
 	/// <summary>
@@ -254,6 +290,9 @@ static class MenuController
 			case SETUP_MENU:
 				PerformSetupMenuAction(button);
 				break;
+			case BGM_MENU:
+				PerformBgmMenuAction (button);
+				break;
 			case GAME_MENU:
 				PerformGameMenuAction(button);
 				break;
@@ -272,6 +311,9 @@ static class MenuController
 				break;
 			case MAIN_MENU_SETUP_BUTTON:
 				GameController.AddNewState(GameState.AlteringSettings);
+				break;
+			case MAIN_MENU_BGM_BUTTON:
+				GameController.AddNewState (GameState.BGMSettings);
 				break;
 			case MAIN_MENU_TOP_SCORES_BUTTON:
 				GameController.AddNewState(GameState.ViewingHighScores);
@@ -301,6 +343,25 @@ static class MenuController
 		}
 		//Always end state - handles exit button as well
 		GameController.EndCurrentState();
+	}
+
+	/// <summary>
+	/// Performs the bgm menu action.
+	/// </summary>
+	/// <param name="button">Button.</param>
+	public static void PerformBgmMenuAction (int button)
+	{
+		switch (button) {
+		case BGM_MENU_BGM1_BUTTON:
+			SwinGame.PlayMusic (GameResources.GameMusic ("bgm1"));
+			break;
+		case BGM_MENU_BGM2_BUTTON:
+			SwinGame.PlayMusic (GameResources.GameMusic ("bgm2"));
+			break;
+		case BGM_MENU_BGM3_BUTTON:
+			SwinGame.PlayMusic (GameResources.GameMusic ("Background"));
+			break;
+		}
 	}
 
 	/// <summary>

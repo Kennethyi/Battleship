@@ -59,6 +59,8 @@ public static class GameResources
 	private static void LoadMusic()
 	{
 		NewMusic("Background", "horrordrone.mp3");
+		NewMusic ("bgm1", "Dragon Age Inquisition Theme.wav");
+		NewMusic ("bgm2", "Journey To Skyhold.wav");
 	}
 
 	/// <summary>
