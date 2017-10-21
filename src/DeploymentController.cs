@@ -32,10 +32,17 @@ static class DeploymentController
 
 	private const int DIR_BUTTONS_WIDTH = 47;
 
+	private const int BGM_BUTTON = 610;
+	private const int BGM_BUTTON_WIDTH = 51;
+	private const int Mute_BGM_BUTTON = 610;
+	private const int Mute_BGM_BUTTON_WIDTH = 51;
+
 	private const int TEXT_OFFSET = 5;
 	private static Direction _currentDirection = Direction.UpDown;
 
 	private static ShipName _selectedShip = ShipName.Tug;
+
+	public static MuteStatus _currentBGMStatus = MuteStatus.unmute;
 	/// <summary>
 	/// Handles user input for the Deployment phase of the game.
 	/// </summary>
@@ -82,6 +89,25 @@ static class DeploymentController
 				_currentDirection = Direction.LeftRight;
 			} else if (UtilityFunctions.IsMouseInRectangle(RANDOM_BUTTON_LEFT, TOP_BUTTONS_TOP, RANDOM_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT)) {
 				GameController.HumanPlayer.RandomizeDeployment();
+			}else if (UtilityFunctions.IsMouseInRectangle (Mute_BGM_BUTTON, TOP_BUTTONS_TOP, BGM_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT) & _currentBGMStatus == MuteStatus.unmute) {
+				Audio.PauseMusic ();
+				_currentBGMStatus = MuteStatus.mute;
+			} else if (UtilityFunctions.IsMouseInRectangle (BGM_BUTTON, TOP_BUTTONS_TOP, BGM_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT) & _currentBGMStatus == MuteStatus.mute) {
+				Audio.ResumeMusic ();
+				_currentBGMStatus = MuteStatus.unmute;
+			}
+		}
+
+		/// <summary>
+		/// Press M on keyboard mute music
+		/// </summary>
+		if (SwinGame.KeyTyped (KeyCode.vk_m)) { 
+			if (_currentBGMStatus == MuteStatus.mute) {
+				Audio.ResumeMusic ();
+				_currentBGMStatus = MuteStatus.unmute;
+			} else {
+				Audio.PauseMusic ();
+				_currentBGMStatus = MuteStatus.mute;
 			}
 		}
 	}
@@ -134,6 +160,18 @@ static class DeploymentController
 			//SwinGame.DrawText("L/R", Color.White, GameFont("Menu"), LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP)
 		} else {
 			SwinGame.DrawBitmap(GameResources.GameImage("UpDownButton"), LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP);
+			//SwinGame.DrawText("U/D", Color.White, GameFont("Menu"), UP_DOWN_BUTTON_LEFT, TOP_BUTTONS_TOP)
+			//SwinGame.DrawText("L/R", Color.Gray, GameFont("Menu"), LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP)
+		}
+
+		//Check Mute Status
+		if (_currentBGMStatus == MuteStatus.unmute) {
+			SwinGame.DrawBitmap (GameResources.GameImage ("BGMButton"), BGM_BUTTON, TOP_BUTTONS_TOP);
+			_currentBGMStatus = MuteStatus.unmute;
+			//SwinGame.DrawText("U/D", Color.Gray, GameFont("Menu"), UP_DOWN_BUTTON_LEFT, TOP_BUTTONS_TOP)
+			//SwinGame.DrawText("L/R", Color.White, GameFont("Menu"), LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP)
+		} else if (_currentBGMStatus == MuteStatus.mute) {
+			SwinGame.DrawBitmap (GameResources.GameImage ("MuteBGMButton"), Mute_BGM_BUTTON, TOP_BUTTONS_TOP);
 			//SwinGame.DrawText("U/D", Color.White, GameFont("Menu"), UP_DOWN_BUTTON_LEFT, TOP_BUTTONS_TOP)
 			//SwinGame.DrawText("L/R", Color.Gray, GameFont("Menu"), LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP)
 		}

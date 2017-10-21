@@ -42,6 +42,7 @@ static class MenuController
 		},
 
 		new string[] {
+			"Mute",
 			"BGM1",
 			"BGM2",
 			"BGM3"
@@ -77,13 +78,16 @@ static class MenuController
 	private const int GAME_MENU_RESTART_BUTTON = 2;
 	private const int GAME_MENU_QUIT_BUTTON = 3;
 
-	private const int BGM_MENU_BGM1_BUTTON = 0;
-	private const int BGM_MENU_BGM2_BUTTON = 1;
-	private const int BGM_MENU_BGM3_BUTTON = 2;
+	private const int BGM_MENU_MUTE_BUTTON = 0;
+	private const int BGM_MENU_BGM1_BUTTON = 1;
+	private const int BGM_MENU_BGM2_BUTTON = 2;
+	private const int BGM_MENU_BGM3_BUTTON = 3;
 
 	private static readonly Color MENU_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
 
 	private static readonly Color HIGHLIGHT_COLOR = SwinGame.RGBAColor(1, 57, 86, 255);
+
+	public static MuteStatus _currentBGMStatus = MuteStatus.unmute;
 	/// <summary>
 	/// Handles the processing of user input when the main menu is showing
 	/// </summary>
@@ -353,6 +357,15 @@ static class MenuController
 	public static void PerformBgmMenuAction (int button)
 	{
 		switch (button) {
+		case BGM_MENU_MUTE_BUTTON:
+			if (_currentBGMStatus == MuteStatus.unmute) {
+				_currentBGMStatus = MuteStatus.mute;
+				Audio.PauseMusic ();
+			} else {
+				_currentBGMStatus = MuteStatus.unmute;
+				Audio.ResumeMusic ();
+			}
+			break;
 		case BGM_MENU_BGM1_BUTTON:
 			SwinGame.PlayMusic (GameResources.GameMusic ("bgm1"));
 			break;
