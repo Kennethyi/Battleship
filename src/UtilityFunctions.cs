@@ -181,7 +181,7 @@ static class UtilityFunctions
 				continue;
 			rowTop = top + (cellGap + cellHeight) * s.Row + SHIP_GAP;
 			colLeft = left + (cellGap + cellWidth) * s.Column + SHIP_GAP;
-
+			/*
 			if (s.Direction == Direction.LeftRight) {
 				shipName = "ShipLR" + s.Size;
 				shipHeight = cellHeight - (SHIP_GAP * 2);
@@ -191,7 +191,97 @@ static class UtilityFunctions
 				shipName = "ShipUD" + s.Size;
 				shipHeight = (cellHeight + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
 				shipWidth = cellWidth - (SHIP_GAP * 2);
+			}*/
+
+			int shipm = 1;
+
+			if (SwinGame.KeyTyped (KeyCode.vk_F1)) {
+				shipm = 1;
 			}
+
+			if (SwinGame.KeyTyped (KeyCode.vk_F2)) {
+				shipm = 2;
+			}
+
+			if (SwinGame.KeyTyped (KeyCode.vk_F3)) {
+				shipm = 3;
+			}
+
+			switch (shipm) {
+			case 2:
+				if (s.Direction == Direction.LeftRight) {
+					shipName = "ShipLR2" + s.Size;
+					shipHeight = cellHeight - (SHIP_GAP * 2);
+					shipWidth = (cellWidth + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+				} else {
+					//Up down
+					shipName = "ShipUD2" + s.Size;
+					shipHeight = (cellHeight + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+					shipWidth = cellWidth - (SHIP_GAP * 2);
+				}
+				break;
+			case 3:
+				if (s.Direction == Direction.LeftRight) {
+					shipName = "ShipLR3" + s.Size;
+					shipHeight = cellHeight - (SHIP_GAP * 2);
+					shipWidth = (cellWidth + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+				} else {
+					//Up down
+					shipName = "ShipUD3" + s.Size;
+					shipHeight = (cellHeight + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+					shipWidth = cellWidth - (SHIP_GAP * 2);
+				}
+				break;
+			default:
+				if (s.Direction == Direction.LeftRight) {
+					shipName = "ShipLR" + s.Size;
+					shipHeight = cellHeight - (SHIP_GAP * 2);
+					shipWidth = (cellWidth + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+				} else {
+					//Up down
+					shipName = "ShipUD" + s.Size;
+					shipHeight = (cellHeight + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+					shipWidth = cellWidth - (SHIP_GAP * 2);
+				}
+				break;
+			}
+
+			/*
+			if (SwinGame.KeyTyped (KeyCode.vk_F1)) {
+				if (s.Direction == Direction.LeftRight) {
+					shipName = "ShipLR" + s.Size;
+					shipHeight = cellHeight - (SHIP_GAP * 2);
+					shipWidth = (cellWidth + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+				} else {
+					//Up down
+					shipName = "ShipUD" + s.Size;
+					shipHeight = (cellHeight + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+					shipWidth = cellWidth - (SHIP_GAP * 2);
+				}
+			} else if (SwinGame.KeyTyped (KeyCode.vk_F2)) {
+				if (s.Direction == Direction.LeftRight) {
+					shipName = "ShipLR2" + s.Size;
+					shipHeight = cellHeight - (SHIP_GAP * 2);
+					shipWidth = (cellWidth + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+				} else {
+					//Up down
+					shipName = "ShipUD2" + s.Size;
+					shipHeight = (cellHeight + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+					shipWidth = cellWidth - (SHIP_GAP * 2);
+				}
+			} else if (SwinGame.KeyTyped (KeyCode.vk_F3)) {
+				if (s.Direction == Direction.LeftRight) {
+					shipName = "ShipLR3" + s.Size;
+					shipHeight = cellHeight - (SHIP_GAP * 2);
+					shipWidth = (cellWidth + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+				} else {
+					//Up down
+					shipName = "ShipUD3" + s.Size;
+					shipHeight = (cellHeight + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+					shipWidth = cellWidth - (SHIP_GAP * 2);
+				}
+			}*/
+
 
 			if (!small) {
 				SwinGame.DrawBitmap(GameResources.GameImage(shipName), colLeft, rowTop);

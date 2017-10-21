@@ -24,12 +24,25 @@ static class DiscoveryController
 		if (SwinGame.KeyTyped (KeyCode.vk_F5)){
 			SwinGame.ToggleFullScreen ();
 		}
+
 		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
 			GameController.AddNewState(GameState.ViewingGameMenu);
 		}
 
 		if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
 			DoAttack();
+		}
+
+		if (SwinGame.KeyTyped(KeyCode.vk_F10)) {
+			GameController.EndCurrentState ();
+			GameController.AddNewState (GameState.EndingGame);
+
+			if (SwinGame.MouseClicked (MouseButton.LeftButton) || SwinGame.KeyTyped (KeyCode.vk_RETURN) || SwinGame.KeyTyped (KeyCode.vk_ESCAPE)) {
+
+				GameController.AddNewState (GameState.ViewingMainMenu);
+			}
+
+
 		}
 	}
 

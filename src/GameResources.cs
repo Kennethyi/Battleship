@@ -37,6 +37,10 @@ public static class GameResources
 		for (i = 1; i <= 5; i++) {
 			NewImage("ShipLR" + i, "ship_deploy_horiz_" + i + ".png");
 			NewImage("ShipUD" + i, "ship_deploy_vert_" + i + ".png");
+			NewImage("ShipLR2" + i, "ship2_deploy_horiz_" + i + ".png");
+			NewImage("ShipUD2" + i, "ship2_deploy_vert_" + i + ".png");
+			NewImage("ShipLR3" + i, "ship3_deploy_horiz_" + i + ".png");
+			NewImage ("ShipUD3" + i, "ship3_deploy_vert_" + i + ".png");
 		}
 
 		//Explosions

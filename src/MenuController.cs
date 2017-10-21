@@ -140,7 +140,7 @@ static class MenuController
 	{
 		if (SwinGame.KeyTyped (KeyCode.vk_F5)) {
 			SwinGame.ToggleFullScreen ();
-   }
+  		}
 
 		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
 			GameController.EndCurrentState();
@@ -235,6 +235,7 @@ static class MenuController
 	private static void DrawButtons(int menu, int level, int xOffset)
 	{
 		SwinGame.DrawText ("Press F5 to switch to Full Screen", MENU_COLOR, GameResources.GameFont ("Menu"), 480, 20);
+		SwinGame.DrawText ("Press F1, F2 or F3 to change ship model", MENU_COLOR, GameResources.GameFont ("Menu"), 480, 20);
 		int btnTop = 0;
 
 		btnTop = MENU_TOP - (MENU_GAP + BUTTON_HEIGHT) * level;
