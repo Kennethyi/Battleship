@@ -301,6 +301,9 @@ public static class GameController
 			case GameState.ViewingHighScores:
 				HighScoreController.HandleHighScoreInput();
 				break;
+			case GameState.changeship:
+				MenuController.HandleShipMenuInput ();
+				break;
 		}
 
 				UtilityFunctions.UpdateAnimations();
@@ -340,6 +343,9 @@ public static class GameController
 				break;
 			case GameState.ViewingHighScores:
 				HighScoreController.DrawHighScores();
+				break;
+			case GameState.changeship:
+				MenuController.DrawShipChange ();
 				break;
 		}
 

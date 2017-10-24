@@ -21,12 +21,13 @@ static class MenuController
 	/// <remarks>
 	/// These are the text captions for the menu items.
 	/// </remarks>
-	private static readonly string[][] _menuStructure = {
+	private static readonly string [] [] _menuStructure = {
 		new string[] {
 			"PLAY",
 			"SETUP",
 			"BGM",
 			"SCORES",
+			"SHIP",
 			"QUIT"
 		},
 		new string[] {
@@ -40,17 +41,21 @@ static class MenuController
 			"MEDIUM",
 			"HARD"
 		},
-
 		new string[] {
 			"Mute",
 			"BGM1",
 			"BGM2",
 			"BGM3"
+		},
+		new string[] {
+			"Original",
+			"Bluey",
+			"Gayyy",
 		}
 	};
 	private const int MENU_TOP = 575;
 	private const int MENU_LEFT = 30;
-	private const int MENU_GAP = 20;//0
+	private const int MENU_GAP = 15;//0
 	private const int BUTTON_WIDTH = 95;//75
 	private const int BUTTON_HEIGHT = 15;
 	private const int BUTTON_SEP = BUTTON_WIDTH + MENU_GAP;
@@ -60,13 +65,16 @@ static class MenuController
 	private const int MAIN_MENU = 0;
 	private const int GAME_MENU = 1;
 	private const int SETUP_MENU = 2;
+	private const int SHIP_MENU = 4;
 	private const int BGM_MENU = 3;
+
 
 	private const int MAIN_MENU_PLAY_BUTTON = 0;
 	private const int MAIN_MENU_SETUP_BUTTON = 1;
+	private const int MAIN_MENU_SHIP_BUTTON = 4;
 	private const int MAIN_MENU_BGM_BUTTON = 2;
 	private const int MAIN_MENU_TOP_SCORES_BUTTON = 3;
-	private const int MAIN_MENU_QUIT_BUTTON = 4;
+	private const int MAIN_MENU_QUIT_BUTTON = 5;
 
 	private const int SETUP_MENU_EASY_BUTTON = 0;
 	private const int SETUP_MENU_MEDIUM_BUTTON = 1;
@@ -78,6 +86,10 @@ static class MenuController
 	private const int GAME_MENU_RESTART_BUTTON = 2;
 	private const int GAME_MENU_QUIT_BUTTON = 3;
 
+	private const int Sh_PIC_BUTTON = 0;
+	private const int Sh_PIC2_BUTTON = 1;
+	private const int Sh_PIC3_BUTTON = 2;
+
 	private const int BGM_MENU_MUTE_BUTTON = 0;
 	private const int BGM_MENU_BGM1_BUTTON = 1;
 	private const int BGM_MENU_BGM2_BUTTON = 2;
@@ -86,6 +98,9 @@ static class MenuController
 	private static readonly Color MENU_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
 
 	private static readonly Color HIGHLIGHT_COLOR = SwinGame.RGBAColor(1, 57, 86, 255);
+
+	//set shi skin as default
+	public static int shipChoice = 0;
 
 	public static MuteStatus _currentBGMStatus = MuteStatus.unmute;
 	/// <summary>
@@ -107,8 +122,7 @@ static class MenuController
 		if (!handled) {
 			HandleMenuInput(MAIN_MENU, 0, 0);
 		}
-	}
-
+		}
 	/// <summary>
 	/// Handle input in the game menu.
 	/// </summary>
@@ -119,6 +133,17 @@ static class MenuController
 	{
 		HandleMenuInput(GAME_MENU, 0, 0);
 	}
+
+	/// <summary>
+	/// Handles the ship menu input.
+	/// </summary>
+	public static void HandleShipMenuInput (){
+	bool handled = false;
+	handled = HandleMenuInput (SHIP_MENU, 1, 3);
+
+	if (!handled) {
+		HandleMenuInput (MAIN_MENU, 0, 0);
+		}	}
 
 	/// <summary>
 	/// Handles the bgm menu input.
@@ -208,6 +233,14 @@ static class MenuController
 	}
 
 	/// <summary>
+	/// Draws the ship change.
+	/// </summary>
+	public static void DrawShipChange ()
+	{
+	DrawButtons (MAIN_MENU);
+	DrawButtons (SHIP_MENU, 1, 3);	}
+
+	/// <summary>
 	/// Draws the bgm.
 	/// </summary>
 	public static void DrawBGM ()
@@ -239,7 +272,7 @@ static class MenuController
 	private static void DrawButtons(int menu, int level, int xOffset)
 	{
 		SwinGame.DrawText ("Press F5 to switch to Full Screen", MENU_COLOR, GameResources.GameFont ("Menu"), 480, 20);
-		SwinGame.DrawText ("Press F1, F2 or F3 to change ship model", MENU_COLOR, GameResources.GameFont ("Menu"), 480, 20);
+
 		int btnTop = 0;
 
 		btnTop = MENU_TOP - (MENU_GAP + BUTTON_HEIGHT) * level;
@@ -282,6 +315,26 @@ static class MenuController
 	}
 
 	/// <summary>
+	/// Changes the ship skin.
+	/// </summary>
+	/// <param name="button">Button.</param>
+	private static void ChangeShip (int button)
+	{
+		switch (button) {
+		case Sh_PIC_BUTTON:
+			shipChoice = 0;
+			break;
+		case Sh_PIC2_BUTTON:
+			shipChoice = 2;
+			break;
+		case Sh_PIC3_BUTTON:
+			shipChoice = 1;
+			break;
+		}
+		//GameController.EndCurrentState ();
+	}
+
+	/// <summary>
 	/// A button has been clicked, perform the associated action.
 	/// </summary>
 	/// <param name="menu">the menu that has been clicked</param>
@@ -295,6 +348,11 @@ static class MenuController
 			case SETUP_MENU:
 				PerformSetupMenuAction(button);
 				break;
+			//change ship skin
+			case SHIP_MENU:
+				ChangeShip (button);
+				break;
+			//performe action for ship
 			case BGM_MENU:
 				PerformBgmMenuAction (button);
 				break;
@@ -316,6 +374,9 @@ static class MenuController
 				break;
 			case MAIN_MENU_SETUP_BUTTON:
 				GameController.AddNewState(GameState.AlteringSettings);
+				break;
+			case MAIN_MENU_SHIP_BUTTON:
+				GameController.AddNewState (GameState.changeship);
 				break;
 			case MAIN_MENU_BGM_BUTTON:
 				GameController.AddNewState (GameState.BGMSettings);
