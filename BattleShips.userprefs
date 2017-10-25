@@ -7,8 +7,8 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Battleship Status">
     <Files>
       <File FileName="src\GameResources.cs" Line="53" Column="2" />
-      <File FileName="src\MenuController.cs" Line="159" Column="38" />
-      <File FileName="src\UtilityFunctions.cs" Line="192" Column="35" />
+      <File FileName="src\MenuController.cs" Line="443" Column="37" />
+      <File FileName="src\UtilityFunctions.cs" Line="260" Column="33" />
       <File FileName="src\GameController.cs" Line="333" Column="23" />
       <File FileName="src\DiscoveryController.cs" Line="17" Column="16" />
       <File FileName="src\GameState.cs" Line="36" Column="18" />

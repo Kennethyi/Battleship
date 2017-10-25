@@ -331,7 +331,7 @@ static class MenuController
 			shipChoice = 1;
 			break;
 		}
-		//GameController.EndCurrentState ();
+		GameController.EndCurrentState ();
 	}
 
 	/// <summary>
@@ -437,6 +437,7 @@ static class MenuController
 			SwinGame.PlayMusic (GameResources.GameMusic ("Background"));
 			break;
 		}
+		GameController.EndCurrentState ();
 	}
 
 	/// <summary>
