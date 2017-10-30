@@ -167,13 +167,63 @@ static class UtilityFunctions
 			}
 		}
 
-		if (!showShips) {
-			return;
-		}
+		//if (!showShips) {
+		//	return;
+		//}
 
+		//Draw ship after sunked
 		int shipHeight = 0;
 		int shipWidth = 0;
 		string shipName = null;
+
+		if (!showShips) {
+			foreach (Ship s in thePlayer) {
+				if (s != null && s.IsDestroyed) {
+					rowTop = top + (cellGap + cellHeight) * s.Row + SHIP_GAP;
+					colLeft = left + (cellGap + cellWidth) * s.Column + SHIP_GAP;
+					if (MenuController.shipChoice == 0) {
+						if (s.Direction == Direction.LeftRight) {
+							shipName = "ShipLR" + s.Size;
+							shipHeight = cellHeight - (SHIP_GAP * 2);
+							shipWidth = (cellWidth + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+						} else {
+							shipName = "ShipUD" + s.Size;
+							shipHeight = (cellHeight + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+							shipWidth = cellWidth - (SHIP_GAP * 2);
+						}
+					} else if (MenuController.shipChoice == 1) {
+						if (s.Direction == Direction.LeftRight) {
+							shipName = "ShipLR2" + s.Size;
+							shipHeight = cellHeight - (SHIP_GAP * 2);
+							shipWidth = (cellWidth + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+						} else {
+							shipName = "ShipUD2" + s.Size;
+							shipHeight = (cellHeight + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+							shipWidth = cellWidth - (SHIP_GAP * 2);
+						}
+					} else if (MenuController.shipChoice == 2) {
+						if (s.Direction == Direction.LeftRight) {
+							shipName = "ShipLR3" + s.Size;
+							shipHeight = cellHeight - (SHIP_GAP * 2);
+							shipWidth = (cellWidth + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+						} else {
+							shipName = "ShipUD3" + s.Size;
+							shipHeight = (cellHeight + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+							shipWidth = cellWidth - (SHIP_GAP * 2);
+						}
+					}
+
+					if (!small) {
+						SwinGame.DrawBitmap (GameResources.GameImage (shipName), colLeft, rowTop);
+					}
+				}
+			}
+			return;
+		}
+
+		shipHeight = 0;
+		shipWidth = 0;
+		shipName = null;
 
 		//Draw the ships
 		foreach (Ship s in thePlayer) {

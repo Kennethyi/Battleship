@@ -16,6 +16,7 @@ public static class GameResources
         NewFont ("Winner", "Pasajero.otf", 70);
         NewFont ("Loser", "DoubleFeature21.ttf", 70);
         NewFont ("Score", "ffaccess.ttf", 20);
+		NewFont ("Menuna", "ffaccess.ttf", 10);
 	}
 
 	private static void LoadImages()
